@@ -9,18 +9,14 @@ package org.carobotics.main;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import org.carobotics.hardware.CANJaguar;
-import org.carobotics.hardware.Joystick;
 import org.carobotics.hardware.Potentiometer;
 import org.carobotics.logic.ThreadManager;
-import org.carobotics.logic.debug.AmpereStopTestThread;
 import org.carobotics.subsystems.Arms;
 import org.carobotics.subsystems.FourStickDriverStation;
 import org.carobotics.logic.ArmMappingThread;
 import org.carobotics.subsystems.GripperPair;
 import org.carobotics.logic.GripperThread;
 
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  * The VM is configured to automatically run this class, and to call the

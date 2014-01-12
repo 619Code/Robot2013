@@ -8,11 +8,9 @@
 package org.carobotics.main;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Victor;
 import org.carobotics.hardware.Joystick;
 import org.carobotics.logic.TankDriveMappingThread;
 import org.carobotics.logic.ThreadManager;
-import org.carobotics.logic.debug.VictorTestThread;
 import org.carobotics.subsystems.DriverStation;
 import org.carobotics.subsystems.TankDriveBase;
 
