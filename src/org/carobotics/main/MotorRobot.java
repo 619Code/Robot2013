@@ -8,6 +8,7 @@
 package org.carobotics.main;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import org.carobotics.hardware.Talon;
 import org.carobotics.hardware.Victor;
 import org.carobotics.logic.MotorTestMappingThread;
 import org.carobotics.logic.ThreadManager;
@@ -22,7 +23,9 @@ import org.carobotics.subsystems.FourStickDriverStation;
  */
 public class MotorRobot extends IterativeRobot {
      // Robot Systems (stuff from org.carobotics.subsystems)
-    Victor victor;
+    Victor victor1;
+    Victor victor2;
+    Talon talon;
     FourStickDriverStation driverStation;
     
     // Thread Manager
@@ -46,7 +49,9 @@ public class MotorRobot extends IterativeRobot {
         // If you are creating something not from org.carobotics.subsystems, YER DOING IT WRONG
         
         driverStation = new FourStickDriverStation(1, 2, 3, 4);
-        victor = new Victor(1);
+        victor1 = new Victor(1);
+        victor2 = new Victor(2);
+        talon = new Talon(3);
     }
 
     public void autonomousInit() {
@@ -62,7 +67,7 @@ public class MotorRobot extends IterativeRobot {
     public void teleopInit() {
         threadManager.killAllThreads(); // DO NOT REMOVE!!!
 
-        driveThread = new MotorTestMappingThread(victor, driverStation, 15, threadManager);
+        driveThread = new MotorTestMappingThread(victor1, victor2, talon, driverStation, 15, threadManager);
         driveThread.start(); 
     }
     
