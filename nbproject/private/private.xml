@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <data xmlns="http://www.netbeans.org/ns/profiler/1" version="0.4"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Student/Documents/GitHub/Robot2013/src/org/carobotics/logic/MechanumDriveMappingThread.java</file>
+            <file>file:/C:/Users/Student/Documents/GitHub/Robot2013/src/org/carobotics/logic/actions/TurnAction.java</file>
+            <file>file:/C:/Users/Student/Documents/GitHub/Robot2013/src/org/carobotics/hardware/Talon.java</file>
+            <file>file:/C:/Users/Student/Documents/GitHub/Robot2013/src/org/carobotics/logic/r2012/KinectMappingThread.java</file>
+            <file>file:/C:/Users/Student/Documents/GitHub/Robot2013/src/org/carobotics/subsystems/MechanumDriveBase.java</file>
+        </group>
+    </open-files>
 </project-private>

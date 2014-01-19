@@ -1,61 +1,82 @@
 
 package org.carobotics.subsystems;
 
-import org.carobotics.hardware.CANJaguar;
+import org.carobotics.hardware.Talon;
 import org.carobotics.hardware.Servo;
 /**
  * Mechanum drive base that is based off the code for the tank drive base, just has extra motors and servos added
  * @author admin
  */
 public class MechanumDriveBase {
-    protected CANJaguar topLeftmotor, topRightmotor, bottomLeftmotor, bottomRightmotor;
+    protected Talon topLeftmotor, topRightmotor, bottomLeftmotor, bottomRightmotor;
     protected Servo topLeftshifter, topRightshifter, bottomLeftshifter, bottomRightshifter;
     
-        public MechanumDriveBase(int topLeftmotorCANID, int topRightmotorCANID, int bottomLeftmotorCANID, int bottomRightmotorCANID){
-            topLeftmotor = new CANJaguar(topLeftmotorCANID);
-            topRightmotor = new CANJaguar(topRightmotorCANID);
-            bottomLeftmotor = new CANJaguar(bottomLeftmotorCANID);
-            bottomRightmotor = new CANJaguar(bottomRightmotorCANID);
+        public MechanumDriveBase(int topLeftmotorChannel, int topRightmotorChannel, int bottomLeftmotorChannel, int bottomRightmotorChannel){
+            topLeftmotor = new Talon(topLeftmotorChannel);
+            topRightmotor = new Talon(topRightmotorChannel);
+            bottomLeftmotor = new Talon(bottomLeftmotorChannel);
+            bottomRightmotor = new Talon(bottomRightmotorChannel);
             topLeftshifter = null;
             topRightshifter = null;
             bottomLeftshifter = null;
             bottomRightshifter = null;
     }
-        public MechanumDriveBase(int topLeftmotorCANID, int topRightmotorCANID, int bottomLeftmotorCANID, int bottomRightmotorCANID,
+        public MechanumDriveBase(int topLeftmotorChannel, int topRightmotorChannel, int bottomLeftmotorChannel, int bottomRightmotorChannel,
                 int digitalSidecarModule, int topLeftshifterServo, int topRightshifterServo, int bottomLeftshifterServo, int bottomRightshifterServo){
-            this(topLeftmotorCANID, topRightmotorCANID, bottomLeftmotorCANID, bottomRightmotorCANID);
+            this(topLeftmotorChannel, topRightmotorChannel, bottomLeftmotorChannel, bottomRightmotorChannel);
             topLeftshifter = new Servo(digitalSidecarModule, topLeftshifterServo);
             topRightshifter = new Servo(digitalSidecarModule, topRightshifterServo);
             bottomLeftshifter = new Servo(digitalSidecarModule, bottomLeftshifterServo);
             bottomRightshifter = new Servo(digitalSidecarModule, bottomRightshifterServo);
     }
         
-        public CANJaguar getTopleftJaguar() {
+        public Talon getTopleftTalon() {
             return topLeftmotor;
     }
 
-        public CANJaguar getToprightJaguar() {
+        public Talon getToprightTalon() {
             return topRightmotor;
     }
-        public CANJaguar getBottomleftJaguar() {
+        public Talon getBottomleftTalon() {
             return bottomLeftmotor;    
     }
-        public CANJaguar getBottomrightJaguar() {
+        public Talon getBottomrightTalon() {
             return bottomRightmotor;    
     }
+        
+        /*
+        gets "percentages" from the joysticks and sets
+        the motors to those percents
+        
+        percents are initialized in the MechanumDriveMappingThread
+        */
+        
         //drive forward and bakcwards
+        //by setting all the wheels to go in the same direction
         public void drive(double percent){
-            topLeftmotor.setPercent(percent);
-            topRightmotor.setPercent(percent);
-            bottomLeftmotor.setPercent(percent);
-            bottomRightmotor.setPercent(percent);
-    }
+            topLeftmotor.set(percent);
+            topRightmotor.set(percent);
+            bottomLeftmotor.set(percent);
+            bottomRightmotor.set(percent);
+        }
+        
+        //slide left and right
+        //by setting the front wheels to go against the back wheels
         public void slide(double sidepercent){
-            topLeftmotor.setPercent(-sidepercent);
-            topRightmotor.setPercent(sidepercent);
-            bottomLeftmotor.setPercent(-sidepercent);
-            bottomRightmotor.setPercent(sidepercent);
-    }
+            topLeftmotor.set(-sidepercent);
+            topRightmotor.set(-sidepercent);
+            bottomLeftmotor.set(sidepercent);
+            bottomRightmotor.set(sidepercent);
+        }
+        
+        //turn left and right
+        //by setting one side to go the opposite of the other
+        public void turn(double turnpercent){
+            topLeftmotor.set(-turnpercent);
+            topRightmotor.set(turnpercent);
+            bottomLeftmotor.set(-turnpercent);
+            bottomRightmotor.set(turnpercent);
+        }
 
     
     public void shiftLow(){
